@@ -12,5 +12,9 @@ def cancer():
     }
     return(responce)
 
-with open('Speedtest.json' ,'w') as outfile:
-    json.dump(cancer(),outfile)
+def main():
+    with open('Speedtest.json', 'w') as outfile:
+        json.dump(cancer(), outfile)
+
+if __name__ == "__main__":
+    main()
