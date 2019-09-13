@@ -3,14 +3,14 @@ import json
 
 def cancer():
     narnia = sp.Speedtest()
-    narnia.get_best_server()
+    server_data = [{'url': 'http://dallas02.speedtest.windstream.net/speedtest/upload.php', 'lat': '32.7766', 'lon': '-96.7969', 'name': 'Dallas, TX', 'country': 'United States', 'cc': 'US', 'sponsor': 'Windstream', 'id': '17386', 'host': 'dallas02.speedtest.windstream.net:8080', 'd': 7855.541337725319}]
+    narnia.get_best_server(server_data)
     responce = {
-        "SpeedTestUploadauto-py-to-exe":narnia.upload()/1e+6,
+        "SpeedTestUpload":narnia.upload()/1e+6,
         "SpeedTestDownload":narnia.download()/1e+6,
-        "SpeedTestLatency":narnia.results.ping
+        "SpeedTestLatency":narnia.results.ping,
     }
-
-    return (responce)
+    return(responce)
 
 with open('Speedtest.json' ,'w') as outfile:
     json.dump(cancer(),outfile)

@@ -1337,9 +1337,9 @@ class Speedtest(object):
 
                     try:
                         self.servers[d].append(attrib)
+
                     except KeyError:
                         self.servers[d] = [attrib]
-
                 break
 
             except ServersRetrievalError:
