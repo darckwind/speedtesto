@@ -1,5 +1,5 @@
 import speedtest as sp
-import json, subprocess
+import json, subprocess, os, sys,getopt
 
 def cancer():
     # start services of speedtest
@@ -29,9 +29,22 @@ def ping_real():
     res_con.pop(0)
     return res_con
 
-def main():
-    with open('Speedtest.json', 'w') as outfile:
+def main(argv):
+    outputfile=''
+    try:
+        opts, args = getopt.getopt(argv, "hi:o:", ["ofile="])
+    except getopt.GetoptError:
+        print('test.exe -o <outputfile>')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print('test.exe -o <outputfile>')
+            sys.exit()
+        elif opt in ("-o", "--ofile"):
+            outputfile = arg
+    name = str(outputfile+"/Speedtest.json")
+    with open(name, 'w') as outfile:
         json.dump(cancer(), outfile)
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
